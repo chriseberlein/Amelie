@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6172" systemVersion="14A261f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6172"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -641,55 +642,137 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Viewer" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller - Window-->
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="jGA-0Y-lOj" storyboardIdentifier="Document Window Controller" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="wind" id="jGA-0Y-lOj" customClass="WindowController" customModule="Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="5E516259-D508-4E22-A2C4-5EBF588FB71C" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="TeC-qM-Tbh">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="ndf-b1-t1L"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="A8j-qp-fMl"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="6dG-56-fAA"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Wcu-NV-DtW"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="UrE-7a-zmu"/>
+                                <toolbarItem implicitItemIdentifier="84FC8A1B-675F-411C-8897-F27E605C9AC7" label="Custom View" paletteLabel="Custom View" image="NSInfo" id="vGE-Tc-KYV">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="F9i-WI-urz" userLabel="Infobutton">
+                                        <rect key="frame" x="23" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSInfo" imagePosition="only" alignment="center" alternateImage="NSInfo" continuous="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="TDz-FV-Y4h">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="infoButtonAction:" target="jGA-0Y-lOj" id="r5A-y4-aTV"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="4A0624BB-57D8-468E-B440-33046E60B0D1" label="Custom View" paletteLabel="Custom View" id="5uX-ys-QLp">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="104" height="24"/>
+                                    <size key="maxSize" width="132" height="24"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="HFN-JU-V3q">
+                                        <rect key="frame" x="0.0" y="14" width="132" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="capsule" trackingMode="momentary" id="M1n-vv-a2y">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Front" width="42"/>
+                                                <segment label="Top" width="41" tag="1"/>
+                                                <segment label="Right" width="41"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="viewAction:" target="jGA-0Y-lOj" id="KF8-Ud-ESm"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="ndf-b1-t1L"/>
+                                <toolbarItem reference="A8j-qp-fMl"/>
+                                <toolbarItem reference="UrE-7a-zmu"/>
+                                <toolbarItem reference="5uX-ys-QLp"/>
+                                <toolbarItem reference="vGE-Tc-KYV"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                     <connections>
-                        <segue destination="5gI-5U-AMq" kind="relationship" relationship="window.shadowedContentViewController" id="nsd-lR-9xd"/>
+                        <outlet property="infobutton" destination="F9i-WI-urz" id="XcI-og-zLE"/>
+                        <outlet property="viewSelect" destination="HFN-JU-V3q" id="TQk-EE-USl"/>
+                        <segue destination="wft-Ov-Gg4" kind="relationship" relationship="window.shadowedContentViewController" id="vrC-uf-seb"/>
                     </connections>
                 </windowController>
                 <customObject id="6f7-a7-6o1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="75" y="300"/>
+        </scene>
+        <!--Vertical Split View Controller-->
+        <scene sceneID="ZhS-5G-XyH">
+            <objects>
+                <splitViewController id="wft-Ov-Gg4" customClass="VerticalSplitViewController" customModule="Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="SKU-sc-eMM"/>
+                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="fwy-wz-rAg"/>
+                    </splitViewItems>
+                    <splitView key="splitView" canDrawConcurrently="YES" dividerStyle="thin" vertical="YES" id="gbW-27-J5N">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </splitView>
+                    <connections>
+                        <segue destination="Ccd-dg-Qwo" kind="relationship" relationship="splitItems" id="giT-Qx-10O"/>
+                        <segue destination="LaQ-6g-5Yp" kind="relationship" relationship="splitItems" id="n4a-sd-XpE"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="BGB-GO-C4x" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686" y="243"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <scene sceneID="zjO-aA-aeG">
             <objects>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ERx-hH-rdd">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <viewController id="Ccd-dg-Qwo" customClass="ViewController" customModule="Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="fTy-Ad-Eye" customClass="MTKView">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TyV-c9-G0C">
-                                <rect key="frame" x="115" y="124" width="250" height="22"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Your document contents here" id="Cc7-nU-5Mv">
-                                    <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="TyV-c9-G0C" secondAttribute="centerY" id="Rxv-Yd-F43"/>
-                            <constraint firstAttribute="centerX" secondItem="TyV-c9-G0C" secondAttribute="centerX" id="Zn4-Y4-lbg"/>
-                        </constraints>
                     </view>
                 </viewController>
-                <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="1fb-hN-oMw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="mgh-tk-65y" customClass="ViewController" customModule="Viewer" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="fTy-Ad-Eye" id="zYZ-r0-mDE"/>
+                    </connections>
+                </customObject>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="1356" y="-8"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DCb-MO-9Ga">
+            <objects>
+                <viewController id="LaQ-6g-5Yp" sceneMemberID="viewController">
+                    <view key="view" id="xni-U0-fqu">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="B8I-T4-C2C" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1356" y="353"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSInfo" width="32" height="32"/>
+    </resources>
 </document>
